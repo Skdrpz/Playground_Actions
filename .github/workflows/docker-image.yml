@@ -17,12 +17,19 @@ jobs:
     - name: build the docker image
       run: |
             cd Pass-List-App
-            docker build . --file dockerFile_2 --tag node.js-app-agr:$UNIQUE_TAG
+            docker build . --file dockerFile_2 --tag nodejs-app-agr:$UNIQUE_TAG
     - name: verificar imagen
       run: docker images
+    - name: instalar docker scout
+      run: |
+            curl -fsSL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh -o install-scout.sh
+            sh install-scout.sh
+    - name: analisis de vulnerabilidades
+      run: |  
+            docker scout cves student.azurecr.io/nodejs-app-agr:$UNIQUE_TAG
     - name: Push Image to ACR
       run: |
-            docker  login -u ${{secret.TOKEN_NAME}} -p ${{secret.ACR_TOKEN_VALUE}} students.azurecr.io
-            docker pushj studemt.azurecr.io/node.js-app-agr:$UNIQUE_TAG
+            docker login -u ${{secret.TOKEN_NAME}} -p ${{secret.ACR_TOKEN_VALUE}} students.azurecr.io
+            docker pushj student.azurecr.io/nodejs-app-agr:$UNIQUE_TAG
             
   
