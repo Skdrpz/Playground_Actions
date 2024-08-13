@@ -37,7 +37,7 @@ jobs:
       working-directory: ${{ env.APP_DIR }}
       
     - name: publicarCarpetaCoberturas
-      uses: action/upload-artifact@v3
+      uses: actions/upload-artifact@v3
       with:
         name: CoverageTest
         path: Pass-List-App/app/cobertura_prueba
