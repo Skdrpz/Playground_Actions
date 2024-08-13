@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: tag de version
-    - run: echo "UNIQUE_TAG=$(date +%s)" >> $GITHUB_ENV
+      run: echo "UNIQUE_TAG=$(date +%s)" >> $GITHUB_ENV
     - name: build the docker image
       run: |
             cd Pass-List-App
@@ -21,7 +21,7 @@ jobs:
     - name: verificar imagen
       run: docker images
     - name: Push Image to ACR
-    - run: |
+      run: |
             docker  login -u ${{secret.TOKEN_NAME}} -p ${{secret.ACR_TOKEN_VALUE}} students.azurecr.io
             docker pushj studemt.azurecr.io/node.js-app-agr:$UNIQUE_TAG
             
