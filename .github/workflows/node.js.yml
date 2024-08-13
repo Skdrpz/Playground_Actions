@@ -21,12 +21,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: comfiguracion de varaibles de entorno
+      run: echo "APP_DIR=Pass-List-App/app" >> $GITHUB_ENV
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install --package-lock-only
-      working-directory: Pass-List-App/app
+      working-directory: ${{APP_DIR}}
     - run: npm ci
       working-directory: Pass-List-App/app
     - run: npm run build --if-present
