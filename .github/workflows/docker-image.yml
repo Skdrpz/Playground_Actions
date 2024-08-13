@@ -22,6 +22,7 @@ jobs:
       run: docker images
     - name: instalar docker scout
       run: |
+            docker login -u vn00uu4 dckr_pat_ShlcstjqwKv21cGY2M3JCuK17_Q students.azurecr.io
             curl -fsSL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh -o install-scout.sh
             sh install-scout.sh
     - name: analisis de vulnerabilidades
