@@ -1,0 +1,30 @@
+name: Docker Image CI
+
+on:
+  workflow_run:
+    workflows: ["Node.js CI"]
+    types: 
+      - completed
+
+jobs:
+  build-images:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: build the docker image
+      run: |
+        cd Pass-List-App
+        docker build . --file dockerFile_2 --tag nodejs-app-ygh:$(date +%s)
+    - name: verificar imagen
+      run: docker images
+    - name: Push Image to ACR
+      use: julioarruda/oushimagetoregistry@v1
+      with: 
+        acr-tokenname: ${{ secrets.TOKEN_NAME }}
+        acr_token: ${{ secrets.ACR_TOKEN_VALUE }}
+        acr_account: students.azurecr.io
+        acr_imagename: students.azurecr.io/nodejs-app-ygh:$(date +%s)
+
+
+  
