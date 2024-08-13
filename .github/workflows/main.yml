@@ -51,7 +51,7 @@ jobs:
 
   package-results:
     runs-on: ubuntu-latest
-    needs: analyze-terraform  # Este job depende del job anterior
+    needs: analyze-scripts  # Este job depende del job anterior
     steps:
       - name: Download resource count artifact
         uses: actions/download-artifact@v3
