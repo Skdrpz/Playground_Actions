@@ -17,12 +17,12 @@ jobs:
     - name: build the docker image
       run: |
             cd Pass-List-App
-            docker build . --file dockerFile_2 --tag nodejs-app-ygh:$UNIQUE_TAG
+            docker build . --file dockerFile_2 --tag nodejs-app-agr:$UNIQUE_TAG
     - name: verificar imagen
       run: docker images
     - name: Push Image to ACR
     - run: |
             docker  login -u ${{secret.TOKEN_NAME}} -p ${{secret.ACR_TOKEN_VALUE}} students.azurecr.io
-            docker pushj studemt.azurecr.io/nodejs-app-ygh:$UNIQUE_TAG
+            docker pushj studemt.azurecr.io/nodejs-app-agr:$UNIQUE_TAG
             
   
