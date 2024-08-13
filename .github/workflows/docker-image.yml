@@ -29,7 +29,7 @@ jobs:
             docker scout cves student.azurecr.io/nodejs-app-agr:$UNIQUE_TAG
     - name: Push Image to ACR
       run: |
-            docker login -u ${{secret.TOKEN_NAME}} -p ${{secret.ACR_TOKEN_VALUE}} students.azurecr.io
+            docker login -u ${{secrets.TOKEN_NAME}} -p ${{secrets.ACR_TOKEN_VALUE}} students.azurecr.io
             docker pushj student.azurecr.io/nodejs-app-agr:$UNIQUE_TAG
             
   
